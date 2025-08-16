@@ -320,7 +320,7 @@ export default function CampaignCreationPage() {
             <div className="flex items-center gap-4">
               <Button
                 variant="outline"
-                className="border-white/20 text-white hover:bg-white/10 hover:border-white/30"
+                className="border-white/20 hover:text-white hover:bg-white/10 hover:border-white/30"
               >
                 <Save className="w-4 h-4 mr-2" />
                 Save Draft
@@ -690,7 +690,7 @@ export default function CampaignCreationPage() {
                         </div>
                         <Button
                           variant="outline"
-                          className="border-white/20 text-white hover:bg-white/10 hover:border-white/30"
+                          className="border-white/20 hover:text-white hover:bg-white/10 hover:border-white/30"
                         >
                           <Plus className="w-4 h-4 mr-2" />
                           Add Variant
@@ -707,7 +707,7 @@ export default function CampaignCreationPage() {
                         </div>
                         <Button
                           variant="outline"
-                          className="border-white/20 text-white hover:bg-white/10 hover:border-white/30"
+                          className="border-white/20 hover:text-white hover:bg-white/10 hover:border-white/30"
                         >
                           <Plus className="w-4 h-4 mr-2" />
                           Add Variant
@@ -846,7 +846,7 @@ export default function CampaignCreationPage() {
               <Button
                 onClick={handleBack}
                 disabled={currentStep === 1}
-                variant="outline"
+                // variant="outline"
                 className="border-white/20 text-white hover:bg-white/10 hover:border-white/30 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
@@ -855,20 +855,20 @@ export default function CampaignCreationPage() {
 
               {currentStep === steps.length ? (
                 <LiquidButton
-                  size="xxl"
+                  size="xl"
                   className="text-lg font-semibold text-white hover:scale-105 transition-transform duration-200"
                 >
                   Launch Campaign
-                  <Send className="w-5 h-5 ml-2" />
+                  {/* <Send className="w-5 h-5 ml-2" /> */}
                 </LiquidButton>
               ) : (
                 <LiquidButton
                   onClick={handleNext}
-                  size="xxl"
+                  size="xl"
                   className="text-lg font-semibold text-white hover:scale-105 transition-transform duration-200"
                 >
                   Continue
-                  <ArrowRight className="w-5 h-5 ml-2" />
+                  {/* <ArrowRight className="w-5 h-5 ml-2" /> */}
                 </LiquidButton>
               )}
             </div>
