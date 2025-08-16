@@ -16,7 +16,12 @@ export function Navigation() {
               height={40}
               className="w-10 h-10"
             />
-            <span className="ml-3 text-xl font-bold text-white">VATE AI</span>
+            <span className="flex flex-col">
+              <span className="ml-3 text-xl font-bold text-white">VATE AI</span>
+              <span className="ml-3 text-sm font-bold text-white">
+                Email Automation
+              </span>
+            </span>
           </div>
 
           {/* Navigation Links */}

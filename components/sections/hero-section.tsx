@@ -51,9 +51,10 @@ export function HeroSection() {
       <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
         {/* VATE AI Brand */}
         <div className="mb-8">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-8">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white ">
             VATE AI
           </h1>
+          <p className="text-md text-white/80">Email Automation</p>
         </div>
 
         {/* Typewriter Effect */}
