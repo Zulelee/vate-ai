@@ -152,16 +152,6 @@ vate-ai/
    http://localhost:3000
    ```
 
-### **Environment Setup**
-
-```bash
-# Create environment file
-cp .env.example .env.local
-
-# Add your environment variables
-NEXT_PUBLIC_APP_URL=http://localhost:3000
-```
-
 ## 📱 Pages & Features
 
 ### **🏠 Landing Page**
