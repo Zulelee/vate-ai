@@ -191,7 +191,7 @@ export default function DashboardPage() {
             <span className="font-medium">Dashboard</span>
           </Link>
           <Link
-            href="/campaigns"
+            href="/campaigns/new"
             className="flex items-center gap-3 px-4 py-3 text-gray-300 hover:text-white hover:bg-white/5 rounded-xl transition-all duration-200"
           >
             <Mail className="w-5 h-5" />

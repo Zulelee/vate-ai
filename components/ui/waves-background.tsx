@@ -26,7 +26,7 @@ class Grad {
   x: number;
   y: number;
   z: number;
-  
+
   constructor(x: number, y: number, z: number) {
     this.x = x;
     this.y = y;
@@ -42,7 +42,7 @@ class Noise {
   private p: number[];
   private perm: number[];
   private gradP: Grad[];
-  
+
   constructor(seed = 0) {
     this.grad3 = [
       new Grad(1, 1, 0),
@@ -136,12 +136,16 @@ export function Waves({
   const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
   const boundingRef = useRef({ width: 0, height: 0, left: 0, top: 0 });
   const noiseRef = useRef(new Noise(Math.random()));
-  const linesRef = useRef<Array<Array<{
-    x: number;
-    y: number;
-    wave: { x: number; y: number };
-    cursor: { x: number; y: number; vx: number; vy: number };
-  }>>>([]);
+  const linesRef = useRef<
+    Array<
+      Array<{
+        x: number;
+        y: number;
+        wave: { x: number; y: number };
+        cursor: { x: number; y: number; vx: number; vy: number };
+      }>
+    >
+  >([]);
   const mouseRef = useRef({
     x: -10,
     y: 0,
@@ -158,9 +162,9 @@ export function Waves({
   useEffect(() => {
     const canvas = canvasRef.current;
     const container = containerRef.current;
-    
+
     if (!canvas || !container) return;
-    
+
     ctxRef.current = canvas.getContext("2d");
 
     function setSize() {
@@ -236,12 +240,15 @@ export function Waves({
       });
     }
 
-    function moved(point: {
-      x: number;
-      y: number;
-      wave: { x: number; y: number };
-      cursor: { x: number; y: number; vx: number; vy: number };
-    }, withCursor = true) {
+    function moved(
+      point: {
+        x: number;
+        y: number;
+        wave: { x: number; y: number };
+        cursor: { x: number; y: number; vx: number; vy: number };
+      },
+      withCursor = true
+    ) {
       const x = point.x + point.wave.x + (withCursor ? point.cursor.x : 0);
       const y = point.y + point.wave.y + (withCursor ? point.cursor.y : 0);
       return { x: Math.round(x * 10) / 10, y: Math.round(y * 10) / 10 };
@@ -251,7 +258,7 @@ export function Waves({
       const { width, height } = boundingRef.current;
       const ctx = ctxRef.current;
       if (!ctx) return;
-      
+
       ctx.clearRect(0, 0, width, height);
       ctx.beginPath();
       ctx.strokeStyle = lineColor;
