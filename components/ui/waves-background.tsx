@@ -36,6 +36,7 @@ class Grad {
     return this.x * x + this.y * y;
   }
 }
+
 class Noise {
   private grad3: Grad[];
   private p: number[];
@@ -130,12 +131,17 @@ export function Waves({
   maxCursorMove = 100,
   className,
 }: WavesProps) {
-  const containerRef = useRef(null);
-  const canvasRef = useRef(null);
-  const ctxRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
   const boundingRef = useRef({ width: 0, height: 0, left: 0, top: 0 });
   const noiseRef = useRef(new Noise(Math.random()));
-  const linesRef = useRef([]);
+  const linesRef = useRef<Array<Array<{
+    x: number;
+    y: number;
+    wave: { x: number; y: number };
+    cursor: { x: number; y: number; vx: number; vy: number };
+  }>>>([]);
   const mouseRef = useRef({
     x: -10,
     y: 0,
@@ -152,6 +158,9 @@ export function Waves({
   useEffect(() => {
     const canvas = canvasRef.current;
     const container = containerRef.current;
+    
+    if (!canvas || !container) return;
+    
     ctxRef.current = canvas.getContext("2d");
 
     function setSize() {
@@ -183,7 +192,7 @@ export function Waves({
       }
     }
 
-    function movePoints(time) {
+    function movePoints(time: number) {
       const lines = linesRef.current;
       const mouse = mouseRef.current;
       const noise = noiseRef.current;
@@ -227,7 +236,12 @@ export function Waves({
       });
     }
 
-    function moved(point, withCursor = true) {
+    function moved(point: {
+      x: number;
+      y: number;
+      wave: { x: number; y: number };
+      cursor: { x: number; y: number; vx: number; vy: number };
+    }, withCursor = true) {
       const x = point.x + point.wave.x + (withCursor ? point.cursor.x : 0);
       const y = point.y + point.wave.y + (withCursor ? point.cursor.y : 0);
       return { x: Math.round(x * 10) / 10, y: Math.round(y * 10) / 10 };
@@ -236,6 +250,8 @@ export function Waves({
     function drawLines() {
       const { width, height } = boundingRef.current;
       const ctx = ctxRef.current;
+      if (!ctx) return;
+      
       ctx.clearRect(0, 0, width, height);
       ctx.beginPath();
       ctx.strokeStyle = lineColor;
@@ -256,7 +272,7 @@ export function Waves({
       ctx.stroke();
     }
 
-    function tick(t) {
+    function tick(t: number) {
       const mouse = mouseRef.current;
 
       mouse.sx += (mouse.x - mouse.sx) * 0.1;
